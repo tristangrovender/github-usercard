@@ -2,13 +2,17 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+
+const entry = document.querySelector(".cards");
+
 axios
     .get("https://api.github.com/users/tristangrovender")
-    .then(data => {
-        console.log("Response:", data);
+    .then(response => {
+        const userInfo = createGithubCard(response.data);
+        entry.appendChild(userInfo);
     })
-    .catch(err => {
-        console.log("ERROR:", err);
+    .catch(error => {
+        console.log("Error: ", error);
     });
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -83,15 +87,15 @@ function createGithubCard(user) {
     username.classList.add("username");
 
     // set the content
-    img.src = user.data.avatar_url;
-    name.textContent = user.data.name;
-    username.textContent = user.data.login;
-    location.textContent = `Location: ${user.data.location}`;
+    img.src = user.avatar_url;
+    name.textContent = user.name;
+    username.textContent = user.login;
+    location.textContent = `Location: ${user.location}`;
     profile.textContent = `Profile: ${address}`;
-    address.textContent = user.data.hmtl_url;
-    followers.textContent = `Followers: ${user.data.followers}`;
-    following.textContent = `following: ${user.data.following}`;
-    bio.textContent = `Bio: ${user.data.bio}`;
+    address.textContent = user.hmtl_url;
+    followers.textContent = `Followers: ${user.followers}`;
+    following.textContent = `following: ${user.following}`;
+    bio.textContent = `Bio: ${user.bio}`;
 
     // put them together
     card.appendChild(img);
