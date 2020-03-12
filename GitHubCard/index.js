@@ -3,8 +3,6 @@
            https://api.github.com/users/<your name>
 */
 
-const entry = document.querySelector(".cards");
-
 axios
     .get("https://api.github.com/users/tristangrovender")
     .then(response => {
@@ -36,6 +34,10 @@ axios
           user, and adding that card to the DOM.
 */
 
+// Grabbed the DOM element I was to append my cards to
+const entry = document.querySelector(".cards");
+
+// Array of instructors
 const followersArray = [
     "tetondan",
     "dustinmyers",
@@ -44,6 +46,7 @@ const followersArray = [
     "bigknell"
 ];
 
+// iterate over array and render DOM element cards for each
 followersArray.forEach(follower => {
     axios
         .get(`https://api.github.com/users/${follower}`)
@@ -74,14 +77,6 @@ followersArray.forEach(follower => {
   </div>
 </div>
 
-*/
-
-/* List of LS Instructors Github username's: 
-  tetondan
-  dustinmyers
-  justsml
-  luishrd
-  bigknell
 */
 
 function createGithubCard(user) {
